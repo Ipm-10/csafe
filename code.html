@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connexion</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            padding: 30px;
+            max-width: 400px;
+            width: 100%;
+        }
+
+        h2 {
+            margin-bottom: 20px;
+            color: #333;
+            text-align: center;
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 20px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 16px;
+            transition: border-color 0.3s ease;
+        }
+
+        input[type="password"]:focus {
+            border-color: #333;
+        }
+
+        button {
+            width: 100%;
+            background-color: #333;
+            color: #fff;
+            border: none;
+            border-radius: 4px;
+            padding: 12px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #333333;
+        }
+
+        .error-message {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Connexion</h2>
+        <form id="login-form" onsubmit="login(event)">
+            <input type="password" id="access-code" placeholder="Code d'accès" required>
+            <div class="error-message" id="access-denied-message">Accès refusé. Le code entré est incorrect.</div>
+            <button type="submit">Se connecter</button>
+        </form>
+    </div>
+
+    <script>
+ var previousPageUrl = localStorage.getItem("previousPageUrl");
+
+document.addEventListener('keydown', function(e) {
+    if ((e.ctrlKey && e.keyCode == 'U'.charCodeAt(0)) || 
+        (e.ctrlKey && e.shiftKey && e.keyCode == 'I'.charCodeAt(0))) {
+        alert("La fonction 'Afficher la source' est désactivée sur cette page.");
+        e.preventDefault();
+    }
+});
+
+document.addEventListener('contextmenu', function(event) {
+    event.preventDefault();
+});
+
+function login(event) {
+    event.preventDefault();
+    var accessCode = document.getElementById("access-code").value;
+    var mainPageCode = "psg"; // Code pour la page principale
+    var specialPageCode = "lezarabdor"; // Code pour la page spéciale
+    var anotherPageCode = "heatlair";
+
+    if (accessCode === mainPageCode) {
+        localStorage.setItem("codeEntered", true);
+        var currentTime = new Date().getTime();
+        localStorage.setItem("lastAccessTime", currentTime);
+        window.location.href = previousPageUrl || "index.html"; // URL de la page principale
+    } else if (accessCode === specialPageCode) {
+        localStorage.setItem("codeEntered", true);
+        var currentTime = new Date().getTime();
+        localStorage.setItem("lastAccessTime", currentTime);
+        window.location.href = "https://drive.sukudir.com/drive/s/8KsSlz2p7tLGc3o6QJxNJ2GTdzipTH"; // URL de la page spéciale
+    } else if (accessCode === anotherPageCode) {
+        localStorage.setItem("codeEntered", true);
+        var currentTime = new Date().getTime();
+        localStorage.setItem("lastAccessTime", currentTime);
+        window.location.href = "https://drive.sukudir.com/drive/s/KF9DRB31GZIQd0n66HBlx93c0UJpEc"; // URL de l'autre page
+        
+    } else {
+        document.getElementById("access-denied-message").style.display = "block";
+    }
+}
+
+    </script>
+</body>
+</html>
